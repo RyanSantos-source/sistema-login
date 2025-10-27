@@ -29,7 +29,7 @@ if($_POST) {
             setcookie("remember");
         }
 
-        $_SESSION['url'] = "http://localhost:8081";
+        $_SESSION['url'] = "http://10.63.45.22:8081";
         header("Location: ./index.php");
     } else {
         $_SESSION['msg'] = "E-mail ou senha incorretos!";
