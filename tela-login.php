@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // VERIFICA SE HÁ COOKIE DE NAVEGAÇÃO DOS ACESSOS
 if (

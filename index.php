@@ -9,15 +9,17 @@ $pagina = "home";
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Cadastro de Produtos</title>
+    <title>Dashboard - Cadastro de Clientes</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <body>
     <?php
     include "mensagens.php";
@@ -33,10 +35,15 @@ $pagina = "home";
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="bi bi-people" style="font-size: 2rem;"></i>
-                                <h5 class="card-title mt-2">Clientes (<?php echo isset($_SESSION["clientes"]) ? count($_SESSION["clientes"]) : 0;?>)</h5>
+                                <h5 class="card-title mt-2">Clientes
+                                    <?php 
+                                    require("requests/clientes/get.php");
+                                    
+                                    ?>
+                                    (<?php echo isset($response['data']) ? count($response['data']) : 0;?>)
                             </div>
                             <div class="card-footer text-center">
-                                <a href="clientes.php" class="btn btn-primary">Acessar</a>
+                                <a href="<?php echo $_SESSION["url"];?>/clientes" class="btn btn-primary">Acessar</a>
                             </div>
                         </div>
                     </div>
@@ -44,10 +51,16 @@ $pagina = "home";
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="bi bi-truck" style="font-size: 2rem;"></i>
-                                <h5 class="card-title mt-2">Fornecedores (<?php echo isset($_SESSION["fornecedores"]) ? count($_SESSION["fornecedores"]) : 0;?>)</h5>
+                                <h5 class="card-title mt-2">Fornecedores
+                                    <?php 
+                                    require("requests/fornecedor/get.php");
+                                    
+                                    ?>
+                                    (<?php echo isset($response['data']) ? count($response['data']) : 0;?>)
+                                </h5>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="fornecedores.php" class="btn btn-primary">Acessar</a>
+                                <a href="<?php echo $_SESSION["url"];?>/fornecedor" class="btn btn-primary">Acessar</a>
                             </div>
                         </div>
                     </div>
@@ -55,14 +68,20 @@ $pagina = "home";
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="bi bi-box-seam" style="font-size: 2rem;"></i>
-                                <h5 class="card-title mt-2">Produtos (<?php echo isset($_SESSION["produtos"]) ? count($_SESSION["produtos"]) : 0;?>)</h5>
+                                <h5 class="card-title mt-2">Produtos
+                                    <?php 
+                                    require("requests/produto/get.php");
+                                    
+                                    ?>
+                                    (<?php echo isset($response['data']) ? count($response['data']) : 0;?>)
+                                </h5>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="produtos.php" class="btn btn-primary">Acessar</a>
+                                <a href="<?php echo $_SESSION["url"];?>/produto" class="btn btn-primary">Acessar</a>
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
@@ -70,4 +89,5 @@ $pagina = "home";
     <!-- Bootstrap JS (opcional, para funcionalidades como o menu hamburguer) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

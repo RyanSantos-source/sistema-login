@@ -12,7 +12,9 @@ if($_POST) {
     $remember = $_POST["remember"] ?? "off";
 
     // VERIFICA SE O EMAIL E SENHA ESTÃO CORRETOS
-    if ($email == "admin@admin" && $password == "1234") {
+    require("requests/login/get.php");
+    // var_dump($response);exit;
+    if ($response['status'] == "success") {
         $_SESSION["autenticado"] = true; // CRIA VARIÁVEL GLOBAL
         $_SESSION["tempo_login"] = time(); // CRIA VARIÁVEL COM TEMPO DE LOGIN
 
@@ -27,6 +29,7 @@ if($_POST) {
             setcookie("remember");
         }
 
+        $_SESSION['url'] = "http://localhost:8081";
         header("Location: ./index.php");
     } else {
         $_SESSION['msg'] = "E-mail ou senha incorretos!";
